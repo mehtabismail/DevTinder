@@ -1,0 +1,28 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "This is a learning project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehtabismail/DevTinder.git"
+  },
+  "keywords": [
+    "devTinder",
+    "javasccript",
+    "nodejs"
+  ],
+  "author": "MEHTAB ISMAIL",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mehtabismail/DevTinder/issues"
+  },
+  "homepage": "https://github.com/mehtabismail/DevTinder#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
