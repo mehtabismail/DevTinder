@@ -1,3 +1,5 @@
+const validator = require("validator");
+
 const validateUpdateUserData = (updates) => {
   const allowedUpdates = [
     "gender",
@@ -21,4 +23,12 @@ const validateUpdateUserData = (updates) => {
   }
 };
 
-module.exports = { validateUpdateUserData };
+const passwordValidate = (value) => {
+  if (!validator.isStrongPassword(value)) {
+    throw new Error(
+      "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character (e.g., @, #, $, %, !)."
+    );
+  }
+};
+
+module.exports = { validateUpdateUserData, passwordValidate };
