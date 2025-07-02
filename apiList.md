@@ -14,13 +14,11 @@
 
 ## connectionRequest Router
 
-- POST /request/send/interested/:userId
-- POST /request/send/ignored/:userId
-- POST /request/review/accepted/:requestId
-- POST /request/review/rejected/:requestId
+- POST /request/send/:status/:toUserId
+- POST /request/review/:status/:requestId
 
 ## user Router
 
+- GET /user/requests/received
 - GET /user/connections
-- GET /user/requeests
 - GET /user/feed => ( get you the profile of other users on platform )
