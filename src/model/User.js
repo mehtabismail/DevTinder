@@ -63,6 +63,13 @@ const userSchema = new mongoose.Schema(
     about: {
       type: String,
       default: "This is a default about of user",
+      validate: {
+        validator: function (value) {
+          const wordCount = value.trim().split(/\s+/).length;
+          return wordCount <= 100;
+        },
+        message: "Description must not exceed 50 words",
+      },
     },
     skills: {
       type: [String],

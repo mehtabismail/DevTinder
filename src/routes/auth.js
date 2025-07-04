@@ -37,21 +37,48 @@ router.post("/login", async (req, res) => {
 // SignUp Api
 router.post("/signup", async (req, res) => {
   try {
-    const { first_name, last_name, email, password } = req.body;
+    const {
+      first_name,
+      last_name,
+      email,
+      photoUrl,
+      password,
+      skills,
+      about,
+      age,
+      gender,
+      location,
+    } = req.body;
     const passwordHash = await bcrypt.hash(password, 10);
     const user = new User({
       first_name,
       last_name,
       email,
+      photoUrl,
+      skills,
+      location,
+      age,
+      gender,
+      about,
       password: passwordHash,
     });
     await user.save();
+    var token = await user.getJWT();
+    if (!token) {
+      throw new Error("Error generating token");
+    }
+    res.cookie("token", token);
     res.status(200).json({
       message: "User created successfully",
       user,
     });
   } catch (error) {
-    console.log(error);
+    if (error.code === 11000 && error.keyPattern?.email) {
+      return res.status(400).json({
+        message: "A user already exists with this email address.",
+        error: "A user already exists with this email address.",
+      });
+    }
     res.status(400).json({
       message: "Error creating user",
       error: error.message,
