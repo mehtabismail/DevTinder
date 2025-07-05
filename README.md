@@ -12,6 +12,11 @@
 - nginx config for adding proxy pass /api to port 3000
 
   server_name 51.20.92.222
+
+  location / {
+  try_files $uri /index.html;
+  }
+
   location /api/ {
   proxy_pass http://localhost:3000/;
   proxy_http_version 1.1;
@@ -21,7 +26,6 @@
   proxy_cache_bypass $http_upgrade;
   }
 
-  - After nginx configuration restart nginx
-  - sudo systemctl restart nginx
-  - sudo systemctl daemon-reload (if above command for restart not working or give warning)
-  -
+- After nginx configuration restart nginx
+- sudo systemctl restart nginx
+- sudo systemctl daemon-reload (if above command for restart not working or give warning)
